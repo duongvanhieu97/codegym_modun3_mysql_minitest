@@ -87,3 +87,20 @@ select * from Students where fullname like 'Nguyen%';
 select * from Students where fullname like '%Anh';
 select * from Students where age >= 15 and student_age < 18;
 select * from Students where id = 12 or student_id = 13;
+
+select count(id) from Students;
+select classes_id, count(id) as 'so luong hoc vien'
+from student
+group by classes_id;
+select address_id, count(id) as 'so luong hoc vien'
+from student
+group by address_id;
+
+select C.id, C.name, avg(points)
+from Course C join Points P on C.id = P.id
+group by C.id, C.id;
+
+select C.id, C.name, avg(points)
+from Course C join Points P on C.id = P.id
+group by C.id, C.id
+having avg(points) >= all (select avg(points) from  Points group by points.id);
